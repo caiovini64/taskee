@@ -10,9 +10,9 @@ class TaskRepository implements ITaskRepository {
   TaskRepository(this.datasource);
 
   @override
-  Future<Either<DomainError, List<TaskEntity>>> get() async {
+  Future<Either<DomainError, List<TaskEntity>>> read() async {
     try {
-      final result = await datasource.get();
+      final result = await datasource.read();
       return right(result);
     } on CacheException {
       return Left(DomainError.cacheFailure);
@@ -20,9 +20,9 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<Either<DomainError, TaskEntity>> add(TaskEntity taskEntity) {
-    // TODO: implement add
-    throw UnimplementedError();
+  Future<Either<DomainError, TaskEntity>> create(TaskEntity taskEntity) async {
+    final result = await datasource.create(taskEntity);
+    return right(result);
   }
 
   @override
