@@ -7,6 +7,12 @@ import '../../mocks.dart';
 
 void main() {
   test(
+      'should return a Json with the same parameters as the TaskModel it received',
+      () {
+    final taskModelToJson = kTaskModel.toJson();
+    expect(taskModelToJson, jsonDecode(kTaskjson));
+  });
+  test(
       'should return a TaskModel with the same parameters as the json it received',
       () {
     final taskModelFromJson = TaskModel.fromJson(jsonDecode(kTaskjson));
