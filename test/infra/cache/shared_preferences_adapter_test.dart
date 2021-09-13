@@ -13,11 +13,13 @@ void main() {
   late CacheStorage storage;
   late SharedPreferences sharedPreferences;
   late String key;
+  late String value;
 
   setUp(() {
     sharedPreferences = SharedPreferencesSpy();
     storage = SharedPreferencesAdapter(sharedPreferences);
     key = faker.internet.random.string(3);
+    value = faker.internet.random.string(3);
   });
 
   group('read', () {
@@ -43,6 +45,24 @@ void main() {
       final result = await storage.delete(key);
       expect(result, false);
       verify(() => sharedPreferences.remove(key));
+    });
+  });
+
+  group('save', () {
+    test('should return true when succeed', () async {
+      when(() => sharedPreferences.setString(any(), any()))
+          .thenAnswer((_) async => true);
+      final result = await storage.save(key: key, value: value);
+      expect(result, true);
+      verify(() => sharedPreferences.setString(key, value));
+    });
+
+    test('should return false when dont succeed', () async {
+      when(() => sharedPreferences.setString(any(), any()))
+          .thenAnswer((_) async => false);
+      final result = await storage.save(key: key, value: value);
+      expect(result, false);
+      verify(() => sharedPreferences.setString(key, value));
     });
   });
 }

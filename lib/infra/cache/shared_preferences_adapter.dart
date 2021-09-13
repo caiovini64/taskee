@@ -18,9 +18,9 @@ class SharedPreferencesAdapter implements CacheStorage {
   }
 
   @override
-  void save({required String key, required value}) {
-    // TODO: implement save
-    throw UnimplementedError();
+  Future<bool> save({required String key, required value}) async {
+    final result = await sharedPreferences.setString(key, value);
+    return result;
   }
 
   @override
