@@ -7,3 +7,21 @@ final TaskModel kTaskModel =
     TaskModel(id: 'id', title: 'title', content: 'content', state: 'state');
 final TaskEntity kTaskEntity =
     TaskEntity(id: 'id', title: 'title', content: 'content', state: 'state');
+
+final kTaskEntity1 = TaskEntity(
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  state: 'todo',
+);
+final kTaskEntity2 = TaskEntity(
+  id: 'id2',
+  title: 'title',
+  content: 'content',
+  state: 'todo',
+);
+
+final kListTaskEntity = [
+  kTaskEntity1,
+  kTaskEntity2,
+];
