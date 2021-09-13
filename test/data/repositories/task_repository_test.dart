@@ -80,4 +80,23 @@ void main() {
       verify(() => datasource.delete(kTaskEntity)).called(1);
     });
   });
+
+  group('update', () {
+    test('should return a TaskEntity when calls to the datasource succeed',
+        () async {
+      when(() => datasource.update(any())).thenAnswer((_) async => kTaskEntity);
+      final result = await repository.update(kTaskEntity);
+      expect(result, Right(kTaskEntity));
+      verify(() => datasource.update(kTaskEntity)).called(1);
+    });
+
+    test(
+        'should return a DomainError.cacheFailure when calls to the datasource throws a CacheException',
+        () async {
+      when(() => datasource.update(any())).thenThrow(CacheException());
+      final result = await repository.update(kTaskEntity);
+      expect(result, Left(DomainError.cacheFailure));
+      verify(() => datasource.update(kTaskEntity)).called(1);
+    });
+  });
 }

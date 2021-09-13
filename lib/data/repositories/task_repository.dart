@@ -40,8 +40,12 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<Either<DomainError, TaskEntity>> update(TaskEntity taskEntity) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<Either<DomainError, TaskEntity>> update(TaskEntity taskEntity) async {
+    try {
+      final result = await datasource.update(taskEntity);
+      return right(result);
+    } on CacheException {
+      return Left(DomainError.cacheFailure);
+    }
   }
 }
