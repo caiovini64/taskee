@@ -4,5 +4,5 @@ abstract class ITaskDatasource {
   Future<TaskEntity> create(TaskEntity taskEntity);
   Future<List<TaskEntity>> read();
   Future<TaskEntity> update(TaskEntity taskEntity);
-  Future<void> delete(TaskEntity taskEntity);
+  Future<bool> delete(TaskEntity taskEntity);
 }

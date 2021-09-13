@@ -64,10 +64,10 @@ void main() {
   });
 
   group('delete', () {
-    test('should return void when calls to the datasource succeed', () async {
-      when(() => datasource.delete(any())).thenAnswer((_) async => null);
+    test('should return true when calls to the datasource succeed', () async {
+      when(() => datasource.delete(any())).thenAnswer((_) async => true);
       final result = await repository.delete(kTaskEntity);
-      expect(result, Right(null));
+      expect(result, Right(true));
       verify(() => datasource.delete(kTaskEntity)).called(1);
     });
 

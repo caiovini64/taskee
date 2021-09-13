@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:new_taskee/domain/entities/entities.dart';
 
 class TaskModel {
