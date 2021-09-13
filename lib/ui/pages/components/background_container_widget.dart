@@ -41,6 +41,7 @@ class BackgroundContainerWidget extends StatelessWidget {
                           height: 2,
                           thickness: 1,
                         ),
+                        child,
                       ],
                     ),
                   ),
