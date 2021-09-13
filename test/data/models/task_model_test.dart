@@ -18,4 +18,11 @@ void main() {
     final taskModelFromJson = TaskModel.fromJson(jsonDecode(kTaskjson));
     expect(taskModelFromJson.toJson(), kTaskModel.toJson());
   });
+
+  test(
+      'should return a TaskEntity with the same parameters as the TaskModel it received',
+      () {
+    final taskEntity = kTaskModel.toEntity();
+    expect(taskEntity, kTaskEntity);
+  });
 }
