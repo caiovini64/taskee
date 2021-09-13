@@ -12,9 +12,9 @@ class SharedPreferencesAdapter implements CacheStorage {
   }
 
   @override
-  void delete(String key) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<bool> delete(String key) async {
+    final result = await sharedPreferences.remove(key);
+    return result;
   }
 
   @override

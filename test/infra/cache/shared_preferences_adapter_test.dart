@@ -28,4 +28,21 @@ void main() {
       expect(result, kTaskListJson);
     });
   });
+
+  group('delete', () {
+    test('should return true when succeed', () async {
+      when(() => sharedPreferences.remove(any())).thenAnswer((_) async => true);
+      final result = await storage.delete(key);
+      expect(result, true);
+      verify(() => sharedPreferences.remove(key));
+    });
+
+    test('should return false when dont succeed', () async {
+      when(() => sharedPreferences.remove(any()))
+          .thenAnswer((_) async => false);
+      final result = await storage.delete(key);
+      expect(result, false);
+      verify(() => sharedPreferences.remove(key));
+    });
+  });
 }
