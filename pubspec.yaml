@@ -29,6 +29,8 @@ dependencies:
   equatable:
   dartz:
   mocktail:
+  shared_preferences:
+  faker:
 
 dev_dependencies:
   flutter_test:
