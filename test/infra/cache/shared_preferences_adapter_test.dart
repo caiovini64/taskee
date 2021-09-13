@@ -65,4 +65,28 @@ void main() {
       verify(() => sharedPreferences.setString(key, value));
     });
   });
+
+  group('update', () {
+    test('should return true when succeed', () async {
+      when(() => sharedPreferences.setString(key, value))
+          .thenAnswer((_) async => true);
+      when(() => sharedPreferences.remove(key)).thenAnswer((_) async => true);
+      await storage.save(key: key, value: value);
+      final result = await storage.update(key: key, value: value);
+      expect(result, true);
+      verify(() => sharedPreferences.remove(key));
+      verify(() => sharedPreferences.setString(key, value));
+    });
+
+    test('should return false when dont succeed', () async {
+      when(() => sharedPreferences.setString(any(), any()))
+          .thenAnswer((_) async => false);
+      when(() => sharedPreferences.remove(key)).thenAnswer((_) async => false);
+      await storage.save(key: key, value: value);
+      final result = await storage.update(key: key, value: value);
+      expect(result, false);
+      verify(() => sharedPreferences.remove(key));
+      verify(() => sharedPreferences.setString(key, value));
+    });
+  });
 }
