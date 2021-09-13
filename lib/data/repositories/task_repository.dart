@@ -21,8 +21,12 @@ class TaskRepository implements ITaskRepository {
 
   @override
   Future<Either<DomainError, TaskEntity>> create(TaskEntity taskEntity) async {
-    final result = await datasource.create(taskEntity);
-    return right(result);
+    try {
+      final result = await datasource.create(taskEntity);
+      return right(result);
+    } on CacheException {
+      return Left(DomainError.cacheFailure);
+    }
   }
 
   @override

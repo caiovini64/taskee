@@ -52,5 +52,14 @@ void main() {
       expect(result, Right(kTaskEntity));
       verify(() => datasource.create(kTaskEntity)).called(1);
     });
+
+    test(
+        'should return a DomainError.cacheFailure when calls to the datasource throws a CacheException',
+        () async {
+      when(() => datasource.create(any())).thenThrow(CacheException());
+      final result = await repository.create(kTaskEntity);
+      expect(result, Left(DomainError.cacheFailure));
+      verify(() => datasource.create(kTaskEntity)).called(1);
+    });
   });
 }
