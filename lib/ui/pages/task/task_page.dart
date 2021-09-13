@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_taskee/ui/pages/components/background_container_widget.dart';
-import 'package:new_taskee/ui/pages/components/components.dart';
 import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
+import 'components/components.dart';
 
 class TaskPage extends StatelessWidget {
   const TaskPage({Key? key}) : super(key: key);

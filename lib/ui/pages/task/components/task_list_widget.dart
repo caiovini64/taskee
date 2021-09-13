@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:new_taskee/ui/components/app_theme.dart';
-import 'package:new_taskee/ui/pages/components/task_card_widget.dart';
 import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
+
+import 'components.dart';
 
 class TaskListWidget extends StatelessWidget {
   final List<TaskViewModel> taskList;
