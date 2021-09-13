@@ -62,4 +62,22 @@ void main() {
       verify(() => datasource.create(kTaskEntity)).called(1);
     });
   });
+
+  group('delete', () {
+    test('should return void when calls to the datasource succeed', () async {
+      when(() => datasource.delete(any())).thenAnswer((_) async => null);
+      final result = await repository.delete(kTaskEntity);
+      expect(result, Right(null));
+      verify(() => datasource.delete(kTaskEntity)).called(1);
+    });
+
+    test(
+        'should return a DomainError.cacheFailure when calls to the datasource throws a CacheException',
+        () async {
+      when(() => datasource.delete(any())).thenThrow(CacheException());
+      final result = await repository.delete(kTaskEntity);
+      expect(result, Left(DomainError.cacheFailure));
+      verify(() => datasource.delete(kTaskEntity)).called(1);
+    });
+  });
 }

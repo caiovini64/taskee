@@ -30,9 +30,13 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<Either<DomainError, void>> delete(TaskEntity taskEntity) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<Either<DomainError, void>> delete(TaskEntity taskEntity) async {
+    try {
+      final result = await datasource.delete(taskEntity);
+      return right(result);
+    } on CacheException {
+      return Left(DomainError.cacheFailure);
+    }
   }
 
   @override
