@@ -32,6 +32,7 @@ void main() {
       when(() => datasource.read()).thenAnswer((_) async => kListTaskEntity);
       final result = await repository.read();
       expect(result, Right(kListTaskEntity));
+      verify(() => datasource.read()).called(1);
     });
     test(
         'should return a DomainError.cacheFailure when calls to the datasource throws a CacheException',
@@ -39,6 +40,7 @@ void main() {
       when(() => datasource.read()).thenThrow(CacheException());
       final result = await repository.read();
       expect(result, Left(DomainError.cacheFailure));
+      verify(() => datasource.read()).called(1);
     });
   });
 
@@ -48,6 +50,7 @@ void main() {
       when(() => datasource.create(any())).thenAnswer((_) async => kTaskEntity);
       final result = await repository.create(kTaskEntity);
       expect(result, Right(kTaskEntity));
+      verify(() => datasource.create(kTaskEntity)).called(1);
     });
   });
 }
