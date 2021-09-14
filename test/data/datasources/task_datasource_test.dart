@@ -15,7 +15,7 @@ void main() {
 
   setUp(() {
     storage = CacheStorageSpy();
-    when(() => storage.read(any())).thenAnswer((_) => kTaskjson);
+    when(() => storage.read(any())).thenAnswer((_) => kTaskMapJson);
     datasource = LocalTaskDatasource(storage);
   });
 
@@ -34,6 +34,26 @@ void main() {
               storage.save(key: any(named: 'key'), value: any(named: 'value')))
           .thenAnswer((_) async => false);
       final result = datasource.create(kTaskParameters);
+      expect(result, throwsA(isA<CacheException>()));
+    });
+  });
+
+  group('delete', () {
+    test('should return true when call to storage succeed', () async {
+      when(() => storage.read(any())).thenAnswer((_) => kTaskMapJson);
+      when(() =>
+              storage.save(key: any(named: 'key'), value: any(named: 'value')))
+          .thenAnswer((_) async => true);
+      final result = await datasource.delete(kTaskEntity);
+      expect(result, true);
+    });
+
+    test('should throw a CacheException when call to storage dont succeed',
+        () async {
+      when(() =>
+              storage.save(key: any(named: 'key'), value: any(named: 'value')))
+          .thenAnswer((_) async => false);
+      final result = datasource.delete(kTaskEntity);
       expect(result, throwsA(isA<CacheException>()));
     });
   });

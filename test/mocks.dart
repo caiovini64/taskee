@@ -6,8 +6,14 @@ final kTaskjson =
     '{"state":"state","content":"content","title":"title","id":"id"}';
 
 final String kTaskListJson =
-    '[{"state":"state","content":"content","title":"title","id":"id"}, {"state":"state","content":"content","title":"title","id":"id2"}]';
-
+    '[{"state":"state","content":"content","title":"title","id":"caio"}, {"state":"state","content":"content","title":"title","id":"id2"}]';
+final String kTaskMapJson = '''
+{
+  "id" :{"state":"state","content":"content","title":"title","id":"id"},
+  "id2" : {"state":"state","content":"content","title":"title","id":"id2"},
+  "id3" : {"state":"state","content":"content","title":"title","id":"id3"}
+}
+''';
 final TaskModel kTaskModel =
     TaskModel(id: 'id', title: 'title', content: 'content', state: 'state');
 

@@ -48,9 +48,14 @@ class LocalTaskDatasource with EntityManager implements ITaskDatasource {
   }
 
   @override
-  Future<bool> delete(TaskEntity entity) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<bool> delete(TaskEntity entity) async {
+    final Map jsonCache = jsonDecode(storage.read('tasks')!);
+    jsonCache.remove(entity.id);
+    final result = await storage.save(
+      key: 'tasks',
+      value: jsonEncode(jsonCache),
+    );
+    return result ? result : throw CacheException();
   }
 
   void _init() {
