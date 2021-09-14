@@ -23,7 +23,7 @@ void main() {
       when(() =>
               storage.save(key: any(named: 'key'), value: any(named: 'value')))
           .thenAnswer((_) async => true);
-      final result = await datasource.create(kTaskEntity);
+      final result = await datasource.create(kTaskParameters);
       expect(result, isA<String>());
     });
 
@@ -32,7 +32,7 @@ void main() {
       when(() =>
               storage.save(key: any(named: 'key'), value: any(named: 'value')))
           .thenAnswer((_) async => false);
-      final result = datasource.create(kTaskEntity);
+      final result = datasource.create(kTaskParameters);
       expect(result, throwsA(isA<CacheException>()));
     });
   });

@@ -1,5 +1,6 @@
 import 'package:new_taskee/data/models/models.dart';
 import 'package:new_taskee/domain/entities/entities.dart';
+import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 
 final kTaskjson =
     '{"state":"state","content":"content","title":"title","id":"id"}';
@@ -12,6 +13,9 @@ final TaskModel kTaskModel =
 
 final TaskEntity kTaskEntity =
     TaskEntity(id: 'id', title: 'title', content: 'content', state: 'state');
+
+final TaskParameters kTaskParameters =
+    TaskParameters(title: 'title', content: 'content', state: 'state');
 
 final kTaskEntity1 = TaskEntity(
   id: 'id',
