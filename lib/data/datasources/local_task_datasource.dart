@@ -48,7 +48,7 @@ class LocalTaskDatasource with EntityManager implements ITaskDatasource {
   }
 
   @override
-  Future<bool> delete(TaskParameters parameters) {
+  Future<bool> delete(TaskEntity entity) {
     // TODO: implement delete
     throw UnimplementedError();
   }

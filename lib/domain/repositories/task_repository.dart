@@ -7,5 +7,5 @@ abstract class ITaskRepository {
   Future<Either<DomainError, String>> create(TaskParameters parameters);
   Future<Either<DomainError, List<TaskEntity>>> read();
   Future<Either<DomainError, String>> update(TaskEntity taskEntity);
-  Future<Either<DomainError, void>> delete(TaskParameters parameters);
+  Future<Either<DomainError, void>> delete(TaskEntity taskEntity);
 }

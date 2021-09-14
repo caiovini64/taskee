@@ -73,18 +73,18 @@ void main() {
   group('delete', () {
     test('should return true when calls to the datasource succeed', () async {
       when(() => datasource.delete(any())).thenAnswer((_) async => true);
-      final result = await repository.delete(kTaskParameters);
+      final result = await repository.delete(kTaskEntity);
       expect(result, Right(true));
-      verify(() => datasource.delete(kTaskParameters)).called(1);
+      verify(() => datasource.delete(kTaskEntity)).called(1);
     });
 
     test(
         'should return a DomainError.cacheFailure when calls to the datasource throws a CacheException',
         () async {
       when(() => datasource.delete(any())).thenThrow(CacheException());
-      final result = await repository.delete(kTaskParameters);
+      final result = await repository.delete(kTaskEntity);
       expect(result, Left(DomainError.cacheFailure));
-      verify(() => datasource.delete(kTaskParameters)).called(1);
+      verify(() => datasource.delete(kTaskEntity)).called(1);
     });
   });
 
