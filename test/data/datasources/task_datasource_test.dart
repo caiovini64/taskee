@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:new_taskee/data/cache/cache_storage.dart';
 import 'package:new_taskee/data/datasources/datasources.dart';
+import 'package:new_taskee/data/helpers/exceptions/cache_exception.dart';
 import 'package:new_taskee/domain/datasources/datasources.dart';
 
 import '../../mocks.dart';
@@ -24,6 +25,15 @@ void main() {
           .thenAnswer((_) async => true);
       final result = await datasource.create(kTaskEntity);
       expect(result, kTaskEntity);
+    });
+
+    test('should throw a CacheException when calls to storage dont succeed',
+        () async {
+      when(() =>
+              storage.save(key: any(named: 'key'), value: any(named: 'value')))
+          .thenAnswer((_) async => false);
+      final result = datasource.create(kTaskEntity);
+      expect(result, throwsA(isA<CacheException>()));
     });
   });
 }
