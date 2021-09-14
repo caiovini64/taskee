@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:new_taskee/data/helpers/helpers.dart';
@@ -16,10 +17,12 @@ class TaskEntityFake extends Fake implements TaskEntity {}
 void main() {
   late ITaskRepository repository;
   late ITaskDatasource datasource;
+  late String key;
 
   setUp(() {
     datasource = TaskDatasourceSpy();
     repository = TaskRepository(datasource);
+    key = faker.internet.random.string(3);
   });
 
   setUpAll(() {
@@ -29,18 +32,18 @@ void main() {
   group('read', () {
     test('should return a TaskEntity list when calls to the datasource succeed',
         () async {
-      when(() => datasource.read()).thenAnswer((_) async => kListTaskEntity);
-      final result = await repository.read();
+      when(() => datasource.read(any())).thenAnswer((_) => kListTaskEntity);
+      final result = await repository.read(key);
       expect(result, Right(kListTaskEntity));
-      verify(() => datasource.read()).called(1);
+      verify(() => datasource.read(key)).called(1);
     });
     test(
         'should return a DomainError.cacheFailure when calls to the datasource throws a CacheException',
         () async {
-      when(() => datasource.read()).thenThrow(CacheException());
-      final result = await repository.read();
+      when(() => datasource.read(any())).thenThrow(CacheException());
+      final result = await repository.read(key);
       expect(result, Left(DomainError.cacheFailure));
-      verify(() => datasource.read()).called(1);
+      verify(() => datasource.read(key)).called(1);
     });
   });
 
