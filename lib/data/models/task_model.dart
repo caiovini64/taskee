@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:new_taskee/domain/entities/entities.dart';
+import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 
 class TaskModel {
   final String id;
@@ -29,6 +32,16 @@ class TaskModel {
       'content': content,
       'state': state,
     };
+  }
+
+  factory TaskModel.fromDomain(TaskParameters parameters) {
+    var rng = new Random();
+    return TaskModel(
+      id: List.generate(12, (_) => rng.nextInt(100)).toString(),
+      title: parameters.title,
+      content: parameters.content,
+      state: parameters.state,
+    );
   }
 
   TaskEntity toEntity() {

@@ -15,7 +15,8 @@ void main() {
 
   setUp(() {
     storage = CacheStorageSpy();
-    datasource = TaskDatasource(storage);
+    when(() => storage.read(any())).thenAnswer((_) => kTaskjson);
+    datasource = LocalTaskDatasource(storage);
   });
 
   group('create', () {
