@@ -11,22 +11,26 @@ class TaskDatasource with EntityManager implements ITaskDatasource {
   TaskDatasource(this.cacheStorage);
 
   @override
-  Future<TaskEntity> create(TaskEntity taskEntity) async {
-    final result = await cacheStorage.save(
-      key: taskEntity.id,
-      value: entityToJson(taskEntity),
+  Future<List<TaskEntity>> create(List<TaskEntity> listTaskEntity) async {
+    final data = await cacheStorage.save(
+      key: 'tasks',
+      value: listTojson(listTaskEntity),
     );
-    if (result) {
-      return taskEntity;
+    if (data) {
+      return listTaskEntity;
     } else {
       throw CacheException();
     }
   }
 
   @override
-  Future<List<TaskEntity>> read() {
-    // TODO: implement read
-    throw UnimplementedError();
+  List<TaskEntity> read(String key) {
+    final data = cacheStorage.read(key);
+    if (data != null) {
+      return mapToEntity(data);
+    } else {
+      throw CacheException();
+    }
   }
 
   @override
