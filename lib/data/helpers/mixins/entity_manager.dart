@@ -9,4 +9,7 @@ mixin EntityManager {
 
   List<TaskEntity> mapToEntity(dynamic list) =>
       list.map((entity) => TaskModel.fromEntity(entity).toJson()).toList();
+
+  String entityToJson(TaskEntity entity) =>
+      jsonEncode(TaskModel.fromEntity(entity).toJson());
 }

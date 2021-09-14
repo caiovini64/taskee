@@ -24,8 +24,8 @@ void main() {
       when(() =>
               storage.save(key: any(named: 'key'), value: any(named: 'value')))
           .thenAnswer((_) async => true);
-      final result = await datasource.create(kListTaskEntity);
-      expect(result, kListTaskEntity);
+      final result = await datasource.create(kTaskEntity);
+      expect(result, kTaskEntity);
     });
 
     test('should throw a CacheException when calls to storage dont succeed',
@@ -33,7 +33,7 @@ void main() {
       when(() =>
               storage.save(key: any(named: 'key'), value: any(named: 'value')))
           .thenAnswer((_) async => false);
-      final result = datasource.create(kListTaskEntity);
+      final result = datasource.create(kTaskEntity);
       expect(result, throwsA(isA<CacheException>()));
     });
   });
