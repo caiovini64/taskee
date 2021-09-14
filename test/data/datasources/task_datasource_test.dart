@@ -19,13 +19,12 @@ void main() {
   });
 
   group('create', () {
-    test('should return a list of TaskEntity when calls to storage succeed',
-        () async {
+    test('should return a String when calls to storage succeed', () async {
       when(() =>
               storage.save(key: any(named: 'key'), value: any(named: 'value')))
           .thenAnswer((_) async => true);
       final result = await datasource.create(kTaskEntity);
-      expect(result, kTaskEntity);
+      expect(result, isA<String>());
     });
 
     test('should throw a CacheException when calls to storage dont succeed',

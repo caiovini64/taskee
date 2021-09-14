@@ -48,12 +48,11 @@ void main() {
   });
 
   group('create', () {
-    test(
-        'should return a list of TaskEntity when calls to the datasource succeed',
+    test('should return a String when calls to the datasource succeed',
         () async {
       when(() => datasource.create(any())).thenAnswer((_) async => id);
       final result = await repository.create(kTaskEntity);
-      expect(result, Right(kTaskEntity));
+      expect(result, Right(id));
       verify(() => datasource.create(kTaskEntity)).called(1);
     });
 
@@ -86,11 +85,11 @@ void main() {
   });
 
   group('update', () {
-    test('should return a TaskEntity when calls to the datasource succeed',
+    test('should return a String when calls to the datasource succeed',
         () async {
       when(() => datasource.update(any())).thenAnswer((_) async => id);
       final result = await repository.update(kTaskEntity);
-      expect(result, Right(kTaskEntity));
+      expect(result, Right(id));
       verify(() => datasource.update(kTaskEntity)).called(1);
     });
 
