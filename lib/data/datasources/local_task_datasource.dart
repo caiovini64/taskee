@@ -15,7 +15,10 @@ class LocalTaskDatasource with EntityManager implements ITaskDatasource {
   }
 
   @override
-  Future<String> create(TaskParameters parameters) => update(parameters);
+  Future<String> create(TaskParameters parameters) {
+    final data = TaskModel.fromDomain(parameters);
+    return update(data.toEntity());
+  }
 
   @override
   List<TaskEntity> read() {
@@ -30,15 +33,15 @@ class LocalTaskDatasource with EntityManager implements ITaskDatasource {
   }
 
   @override
-  Future<String> update(TaskParameters parameters) async {
+  Future<String> update(TaskEntity entity) async {
     final jsonCache = jsonDecode(storage.read('tasks')!);
-    final data = TaskModel.fromDomain(parameters);
     final response = await storage.save(
       key: 'tasks',
-      value: jsonEncode(jsonCache..[data.id] = data.toJson()),
+      value: jsonEncode(
+          jsonCache..[entity.id] = TaskModel.fromEntity(entity).toJson()),
     );
     if (response) {
-      return data.id;
+      return entity.id;
     } else {
       throw CacheException();
     }

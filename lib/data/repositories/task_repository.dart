@@ -41,9 +41,9 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<Either<DomainError, String>> update(TaskParameters parameters) async {
+  Future<Either<DomainError, String>> update(TaskEntity taskEntity) async {
     try {
-      final result = await datasource.update(parameters);
+      final result = await datasource.update(taskEntity);
       return right(result);
     } on CacheException {
       return Left(DomainError.cacheFailure);

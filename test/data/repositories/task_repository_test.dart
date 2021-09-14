@@ -15,6 +15,8 @@ class TaskDatasourceSpy extends Mock implements ITaskDatasource {}
 
 class ParametersFake extends Fake implements TaskParameters {}
 
+class EntityFake extends Fake implements TaskEntity {}
+
 void main() {
   late ITaskRepository repository;
   late ITaskDatasource datasource;
@@ -28,6 +30,7 @@ void main() {
 
   setUpAll(() {
     registerFallbackValue(ParametersFake());
+    registerFallbackValue(EntityFake());
   });
 
   group('read', () {
@@ -89,18 +92,18 @@ void main() {
     test('should return a String when calls to the datasource succeed',
         () async {
       when(() => datasource.update(any())).thenAnswer((_) async => id);
-      final result = await repository.update(kTaskParameters);
+      final result = await repository.update(kTaskEntity);
       expect(result, Right(id));
-      verify(() => datasource.update(kTaskParameters)).called(1);
+      verify(() => datasource.update(kTaskEntity)).called(1);
     });
 
     test(
         'should return a DomainError.cacheFailure when calls to the datasource throws a CacheException',
         () async {
       when(() => datasource.update(any())).thenThrow(CacheException());
-      final result = await repository.update(kTaskParameters);
+      final result = await repository.update(kTaskEntity);
       expect(result, Left(DomainError.cacheFailure));
-      verify(() => datasource.update(kTaskParameters)).called(1);
+      verify(() => datasource.update(kTaskEntity)).called(1);
     });
   });
 }
