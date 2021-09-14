@@ -13,7 +13,7 @@ class TaskDatasource with EntityManager implements ITaskDatasource {
   @override
   Future<TaskEntity> create(TaskEntity taskEntity) async {
     final data = await cacheStorage.save(
-      key: 'tasks',
+      key: 'tasks/{$taskEntity.id}',
       value: entityToJson(taskEntity),
     );
     if (data) {
@@ -24,8 +24,8 @@ class TaskDatasource with EntityManager implements ITaskDatasource {
   }
 
   @override
-  List<TaskEntity> read(String key) {
-    final data = cacheStorage.read(key);
+  List<TaskEntity> read() {
+    final data = cacheStorage.read('key');
     if (data != null) {
       return mapToEntity(data);
     } else {

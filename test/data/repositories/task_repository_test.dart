@@ -32,18 +32,18 @@ void main() {
   group('read', () {
     test('should return a TaskEntity list when calls to the datasource succeed',
         () async {
-      when(() => datasource.read(any())).thenAnswer((_) => kListTaskEntity);
-      final result = await repository.read(key);
+      when(() => datasource.read()).thenAnswer((_) => kListTaskEntity);
+      final result = await repository.read();
       expect(result, Right(kListTaskEntity));
-      verify(() => datasource.read(key)).called(1);
+      verify(() => datasource.read()).called(1);
     });
     test(
         'should return a DomainError.cacheFailure when calls to the datasource throws a CacheException',
         () async {
-      when(() => datasource.read(any())).thenThrow(CacheException());
-      final result = await repository.read(key);
+      when(() => datasource.read()).thenThrow(CacheException());
+      final result = await repository.read();
       expect(result, Left(DomainError.cacheFailure));
-      verify(() => datasource.read(key)).called(1);
+      verify(() => datasource.read()).called(1);
     });
   });
 
