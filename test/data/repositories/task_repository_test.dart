@@ -17,12 +17,12 @@ class TaskEntityFake extends Fake implements TaskEntity {}
 void main() {
   late ITaskRepository repository;
   late ITaskDatasource datasource;
-  late String key;
+  late String id;
 
   setUp(() {
     datasource = TaskDatasourceSpy();
     repository = TaskRepository(datasource);
-    key = faker.internet.random.string(3);
+    id = faker.internet.random.string(3);
   });
 
   setUpAll(() {
@@ -51,7 +51,7 @@ void main() {
     test(
         'should return a list of TaskEntity when calls to the datasource succeed',
         () async {
-      when(() => datasource.create(any())).thenAnswer((_) async => kTaskEntity);
+      when(() => datasource.create(any())).thenAnswer((_) async => id);
       final result = await repository.create(kTaskEntity);
       expect(result, Right(kTaskEntity));
       verify(() => datasource.create(kTaskEntity)).called(1);
@@ -88,7 +88,7 @@ void main() {
   group('update', () {
     test('should return a TaskEntity when calls to the datasource succeed',
         () async {
-      when(() => datasource.update(any())).thenAnswer((_) async => kTaskEntity);
+      when(() => datasource.update(any())).thenAnswer((_) async => id);
       final result = await repository.update(kTaskEntity);
       expect(result, Right(kTaskEntity));
       verify(() => datasource.update(kTaskEntity)).called(1);

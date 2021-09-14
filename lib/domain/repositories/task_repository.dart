@@ -3,8 +3,8 @@ import 'package:new_taskee/domain/entities/task_entity.dart';
 import 'package:new_taskee/domain/helpers/errors/domain_error.dart';
 
 abstract class ITaskRepository {
-  Future<Either<DomainError, TaskEntity>> create(TaskEntity taskEntity);
+  Future<Either<DomainError, String>> create(TaskEntity taskEntity);
   Future<Either<DomainError, List<TaskEntity>>> read();
-  Future<Either<DomainError, TaskEntity>> update(TaskEntity taskEntity);
+  Future<Either<DomainError, String>> update(TaskEntity taskEntity);
   Future<Either<DomainError, void>> delete(TaskEntity taskEntity);
 }

@@ -20,7 +20,7 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<Either<DomainError, TaskEntity>> create(TaskEntity taskEntity) async {
+  Future<Either<DomainError, String>> create(TaskEntity taskEntity) async {
     try {
       final result = await datasource.create(taskEntity);
       return right(result);
@@ -40,7 +40,7 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<Either<DomainError, TaskEntity>> update(TaskEntity taskEntity) async {
+  Future<Either<DomainError, String>> update(TaskEntity taskEntity) async {
     try {
       final result = await datasource.update(taskEntity);
       return right(result);
