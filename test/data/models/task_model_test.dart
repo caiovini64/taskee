@@ -23,4 +23,11 @@ void main() {
     final taskEntity = kTaskModel.toEntity();
     expect(taskEntity, kTaskEntity);
   });
+
+  test(
+      'should return a TaskModel with the same parameters as the TaskEntity it received',
+      () {
+    final taskModel = TaskModel.fromEntity(kTaskEntity);
+    expect(taskModel.toEntity(), kTaskModel.toEntity());
+  });
 }

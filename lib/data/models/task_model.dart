@@ -39,4 +39,13 @@ class TaskModel {
       state: this.state,
     );
   }
+
+  factory TaskModel.fromEntity(TaskEntity taskEntity) {
+    return TaskModel(
+      id: taskEntity.id,
+      title: taskEntity.title,
+      content: taskEntity.content,
+      state: taskEntity.state,
+    );
+  }
 }
