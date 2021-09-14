@@ -22,11 +22,4 @@ class SharedPreferencesAdapter implements CacheStorage {
     final result = await sharedPreferences.setString(key, value);
     return result;
   }
-
-  @override
-  Future<bool> update({required String key, required dynamic value}) async {
-    await delete(key);
-    final result = await save(key: key, value: value);
-    return result;
-  }
 }

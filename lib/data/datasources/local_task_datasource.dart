@@ -15,19 +15,7 @@ class LocalTaskDatasource with EntityManager implements ITaskDatasource {
   }
 
   @override
-  Future<String> create(TaskParameters parameters) async {
-    final jsonCache = jsonDecode(storage.read('tasks')!);
-    final data = TaskModel.fromDomain(parameters);
-    final response = await storage.save(
-      key: 'tasks',
-      value: jsonEncode(jsonCache..[data.id] = data.toJson()),
-    );
-    if (response) {
-      return data.id;
-    } else {
-      throw CacheException();
-    }
-  }
+  Future<String> create(TaskParameters parameters) => update(parameters);
 
   @override
   List<TaskEntity> read() {
@@ -42,9 +30,18 @@ class LocalTaskDatasource with EntityManager implements ITaskDatasource {
   }
 
   @override
-  Future<String> update(TaskParameters parameters) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<String> update(TaskParameters parameters) async {
+    final jsonCache = jsonDecode(storage.read('tasks')!);
+    final data = TaskModel.fromDomain(parameters);
+    final response = await storage.save(
+      key: 'tasks',
+      value: jsonEncode(jsonCache..[data.id] = data.toJson()),
+    );
+    if (response) {
+      return data.id;
+    } else {
+      throw CacheException();
+    }
   }
 
   @override
