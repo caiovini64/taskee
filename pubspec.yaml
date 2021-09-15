@@ -31,6 +31,9 @@ dependencies:
   mocktail:
   shared_preferences:
   faker:
+  bloc:
+  flutter_bloc:
+  bloc_test:
 
 dev_dependencies:
   flutter_test:

@@ -18,6 +18,8 @@ class TaskPage extends StatelessWidget {
 }
 
 final taskList = <TaskViewModel>[
-  TaskViewModel(title: 'aaaaaaaaaaaa', content: 'bbbbbbbbbb', state: 'state'),
-  TaskViewModel(title: 'aaaaaaaaa', content: 'dddddddddd', state: 'state'),
+  TaskViewModel(
+      id: '', title: 'aaaaaaaaaaaa', content: 'bbbbbbbbbb', state: 'state'),
+  TaskViewModel(
+      id: '', title: 'aaaaaaaaa', content: 'dddddddddd', state: 'state'),
 ];

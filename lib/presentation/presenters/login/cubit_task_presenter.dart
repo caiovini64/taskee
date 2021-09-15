@@ -1,0 +1,55 @@
+import 'package:bloc/bloc.dart';
+import 'package:new_taskee/domain/helpers/errors/domain_error.dart';
+import 'package:new_taskee/domain/repositories/repositories.dart';
+import 'package:new_taskee/presentation/presenters/task/cubit_task_presenter.dart';
+import 'package:new_taskee/ui/pages/task/task_presenter.dart';
+import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
+
+class TaskCubit extends Cubit<TaskState> implements TaskPresenter {
+  final ITaskRepository repository;
+  TaskCubit(this.repository) : super(Initial());
+
+  @override
+  Future<void> addTask() {
+    // TODO: implement addTask
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> deleteTask() {
+    // TODO: implement deleteTask
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> getTasks() async {
+    List<TaskViewModel> _taskListViewModel;
+    emit(Loading());
+    final result = await repository.read();
+    result.fold(
+      (failure) => emit(Error(failure.message)),
+      (data) => {
+        _taskListViewModel = data
+            .map((task) => TaskViewModel(
+                id: task.id,
+                title: task.title,
+                content: task.content,
+                state: task.state))
+            .toList(),
+        emit(Done(_taskListViewModel)),
+      },
+    );
+  }
+
+  @override
+  Future<void> updateTask() {
+    // TODO: implement updateTask
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateTaskState() {
+    // TODO: implement updateTaskState
+    throw UnimplementedError();
+  }
+}
