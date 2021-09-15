@@ -31,7 +31,7 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<Either<DomainError, bool>> delete(TaskEntity taskEntity) async {
+  Future<Either<DomainError, void>> delete(TaskEntity taskEntity) async {
     try {
       final result = await datasource.delete(taskEntity);
       return Right(result);

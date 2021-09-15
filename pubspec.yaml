@@ -30,6 +30,7 @@ dependencies:
   dartz:
   mocktail:
   shared_preferences:
+  localstorage:
   faker:
   bloc:
   flutter_bloc:

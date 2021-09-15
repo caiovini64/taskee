@@ -21,7 +21,7 @@ class LocalTaskDatasource implements ITaskDatasource {
 
   @override
   List<TaskEntity> read() {
-    final data = storage.read('tasks');
+    final Future<String?>? data = storage.read('tasks');
     if (data != null) {
       return _mapToEntity(data);
     } else if (data == null) {
@@ -33,28 +33,25 @@ class LocalTaskDatasource implements ITaskDatasource {
 
   @override
   Future<String> update(TaskEntity entity) async {
-    final jsonCache = jsonDecode(storage.read('tasks')!);
-    final response = await storage.save(
+    final storageData = await storage.read('tasks');
+    final jsonCache = jsonDecode(storageData!);
+    await storage.save(
       key: 'tasks',
       value: jsonEncode(
           jsonCache..[entity.id] = TaskModel.fromEntity(entity).toJson()),
     );
-    if (response) {
-      return entity.id;
-    } else {
-      throw CacheException();
-    }
+    return entity.id;
   }
 
   @override
-  Future<bool> delete(TaskEntity entity) async {
-    final Map jsonCache = jsonDecode(storage.read('tasks')!);
+  Future<void> delete(TaskEntity entity) async {
+    final storageData = await storage.read('tasks');
+    final Map jsonCache = jsonDecode(storageData!);
     jsonCache.remove(entity.id);
-    final result = await storage.save(
+    await storage.save(
       key: 'tasks',
       value: jsonEncode(jsonCache),
     );
-    return result ? result : throw CacheException();
   }
 
   void _init() {
