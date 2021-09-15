@@ -20,8 +20,8 @@ class LocalTaskDatasource implements ITaskDatasource {
   }
 
   @override
-  List<TaskEntity> read() {
-    final Future<String?>? data = storage.read('tasks');
+  Future<List<TaskEntity>> read() async {
+    final data = await storage.read('tasks');
     if (data != null) {
       return _mapToEntity(data);
     } else if (data == null) {

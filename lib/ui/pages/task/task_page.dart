@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_taskee/presentation/presenters/task/cubit_task_presenter.dart';
 import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
 import 'components/components.dart';
@@ -9,10 +10,20 @@ class TaskPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BackgroundContainerWidget(
-        child: TaskListWidget(
-          taskList: taskList,
+    return BlocProvider(
+      create: (context) => presenter,
+      child: Scaffold(
+        body: BlocBuilder<CubitTaskPresenter, TaskState>(
+          builder: (context, state) {
+            if (state is Done) {
+              return BackgroundContainerWidget(
+                child: TaskListWidget(
+                  taskList: state.taskList,
+                ),
+              );
+            }
+            return CircularProgressIndicator();
+          },
         ),
       ),
     );

@@ -13,7 +13,7 @@ class TaskRepository implements ITaskRepository {
   @override
   Future<Either<DomainError, List<TaskEntity>>> read() async {
     try {
-      final result = datasource.read();
+      final result = await datasource.read();
       return right(result);
     } on CacheException {
       return Left(DomainError.cacheFailure);
