@@ -40,7 +40,7 @@ class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
                 content: task.content,
                 state: task.state))
             .toList(),
-        emit(Done(_taskListViewModel)),
+        emit(Done(kTaskListViewModel)),
       },
     );
   }
@@ -57,3 +57,26 @@ class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
     throw UnimplementedError();
   }
 }
+
+final kTaskViewModel1 = TaskViewModel(
+  id: 'id',
+  title: 'todo',
+  content: 'content',
+  state: 'todo',
+);
+
+final kTaskViewModel2 = TaskViewModel(
+  id: 'id',
+  title: 'in progress',
+  content: 'content',
+  state: 'in progress',
+);
+
+final kTaskViewModel3 = TaskViewModel(
+  id: 'id',
+  title: 'done',
+  content: 'content',
+  state: 'done',
+);
+
+final kTaskListViewModel = [kTaskViewModel1, kTaskViewModel2, kTaskViewModel3];
