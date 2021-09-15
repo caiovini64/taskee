@@ -17,6 +17,8 @@ void main() {
 
   setUp(() {
     repository = TaskRepositorySpy();
+    when(() => repository.read())
+        .thenAnswer((_) async => Right(kListTaskEntity));
     presenter = CubitTaskPresenter(repository: repository);
   });
 
