@@ -24,7 +24,7 @@ void main() {
 
   setUp(() {
     datasource = TaskDatasourceSpy();
-    repository = TaskRepository(datasource);
+    repository = TaskRepository(datasource: datasource);
     id = faker.internet.random.string(3);
   });
 

@@ -3,7 +3,7 @@ import 'package:new_taskee/data/cache/cache_storage.dart';
 
 class LocalStorageAdapter implements CacheStorage {
   final LocalStorage localStorage;
-  LocalStorageAdapter(this.localStorage);
+  LocalStorageAdapter({required this.localStorage});
 
   @override
   Future<void> save({required String key, required String value}) async {

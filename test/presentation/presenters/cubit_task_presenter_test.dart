@@ -17,7 +17,7 @@ void main() {
 
   setUp(() {
     repository = TaskRepositorySpy();
-    presenter = CubitTaskPresenter(repository);
+    presenter = CubitTaskPresenter(repository: repository);
   });
 
   group('getTasks', () {

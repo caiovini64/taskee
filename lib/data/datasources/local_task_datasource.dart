@@ -9,7 +9,7 @@ import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 
 class LocalTaskDatasource implements ITaskDatasource {
   final CacheStorage storage;
-  LocalTaskDatasource(this.storage) {
+  LocalTaskDatasource({required this.storage}) {
     _init();
   }
 

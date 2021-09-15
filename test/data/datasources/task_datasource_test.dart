@@ -16,7 +16,7 @@ void main() {
   setUp(() {
     storage = CacheStorageSpy();
     when(() => storage.read(any())).thenAnswer((_) async => kTaskMapJson);
-    datasource = LocalTaskDatasource(storage);
+    datasource = LocalTaskDatasource(storage: storage);
   });
 
   group('create', () {

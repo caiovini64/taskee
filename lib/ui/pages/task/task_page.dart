@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:new_taskee/presentation/presenters/task/cubit_task_presenter.dart';
 import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
 import 'components/components.dart';
 
 class TaskPage extends StatelessWidget {
-  const TaskPage({Key? key}) : super(key: key);
+  final CubitTaskPresenter presenter;
+  const TaskPage({Key? key, required this.presenter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

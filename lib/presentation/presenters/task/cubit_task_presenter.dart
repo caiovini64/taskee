@@ -9,7 +9,7 @@ part 'cubit_task_state.dart';
 
 class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
   final ITaskRepository repository;
-  CubitTaskPresenter(this.repository) : super(Initial());
+  CubitTaskPresenter({required this.repository}) : super(Initial());
 
   @override
   Future<void> addTask() {

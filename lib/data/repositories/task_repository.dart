@@ -8,7 +8,7 @@ import 'package:new_taskee/domain/repositories/repositories.dart';
 
 class TaskRepository implements ITaskRepository {
   final ITaskDatasource datasource;
-  TaskRepository(this.datasource);
+  TaskRepository({required this.datasource});
 
   @override
   Future<Either<DomainError, List<TaskEntity>>> read() async {
