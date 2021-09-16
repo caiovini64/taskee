@@ -31,7 +31,7 @@ void main() {
       },
       build: () => presenter as CubitTaskPresenter,
       act: (cubit) => presenter.getTasks(),
-      // expect: () => [Loading(), Done(kTaskListViewModel)],
+      expect: () => [Loading(), Done(kTaskListViewModel)],
     );
     blocTest(
       'should emit a [Error()] when dont succeeds',
