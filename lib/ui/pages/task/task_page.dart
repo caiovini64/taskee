@@ -1,23 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
-import 'components/components.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_taskee/presentation/presenters/task/cubit_task_presenter.dart';
+import 'package:new_taskee/ui/pages/task/components/task_list_component.dart';
 
-class TaskPage extends StatelessWidget {
-  const TaskPage({Key? key}) : super(key: key);
+class TaskPage extends StatefulWidget {
+  final CubitTaskPresenter presenter;
+  const TaskPage({Key? key, required this.presenter}) : super(key: key);
+
+  @override
+  _TaskPageState createState() => _TaskPageState();
+}
+
+class _TaskPageState extends State<TaskPage> {
+  late PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(initialPage: 0);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BackgroundContainerWidget(
-        child: TaskListWidget(
-          taskList: taskList,
-        ),
+    return BlocProvider(
+      create: (context) => widget.presenter,
+      child: PageView(
+        controller: pageController,
+        children: [
+          TaskListComponent(),
+          TaskListComponent(),
+          TaskListComponent(),
+        ],
       ),
     );
   }
 }
-
-final taskList = <TaskViewModel>[
-  TaskViewModel(title: 'aaaaaaaaaaaa', content: 'bbbbbbbbbb', state: 'state'),
-  TaskViewModel(title: 'aaaaaaaaa', content: 'dddddddddd', state: 'state'),
-];

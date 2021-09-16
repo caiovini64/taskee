@@ -24,7 +24,7 @@ void main() {
 
   setUp(() {
     datasource = TaskDatasourceSpy();
-    repository = TaskRepository(datasource);
+    repository = TaskRepository(datasource: datasource);
     id = faker.internet.random.string(3);
   });
 
@@ -36,7 +36,7 @@ void main() {
   group('read', () {
     test('should return a TaskEntity list when calls to the datasource succeed',
         () async {
-      when(() => datasource.read()).thenAnswer((_) => kListTaskEntity);
+      when(() => datasource.read()).thenAnswer((_) async => kListTaskEntity);
       final result = await repository.read();
       expect(result, Right(kListTaskEntity));
       verify(() => datasource.read()).called(1);

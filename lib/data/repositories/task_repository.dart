@@ -8,12 +8,12 @@ import 'package:new_taskee/domain/repositories/repositories.dart';
 
 class TaskRepository implements ITaskRepository {
   final ITaskDatasource datasource;
-  TaskRepository(this.datasource);
+  TaskRepository({required this.datasource});
 
   @override
   Future<Either<DomainError, List<TaskEntity>>> read() async {
     try {
-      final result = datasource.read();
+      final result = await datasource.read();
       return right(result);
     } on CacheException {
       return Left(DomainError.cacheFailure);
@@ -31,7 +31,7 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<Either<DomainError, bool>> delete(TaskEntity taskEntity) async {
+  Future<Either<DomainError, void>> delete(TaskEntity taskEntity) async {
     try {
       final result = await datasource.delete(taskEntity);
       return Right(result);

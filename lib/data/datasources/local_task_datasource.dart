@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:new_taskee/data/cache/cache_storage.dart';
 import 'package:new_taskee/data/helpers/exceptions/cache_exception.dart';
 import 'package:new_taskee/data/models/models.dart';
@@ -9,7 +10,7 @@ import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 
 class LocalTaskDatasource implements ITaskDatasource {
   final CacheStorage storage;
-  LocalTaskDatasource(this.storage) {
+  LocalTaskDatasource({required this.storage}) {
     _init();
   }
 
@@ -20,11 +21,19 @@ class LocalTaskDatasource implements ITaskDatasource {
   }
 
   @override
-  List<TaskEntity> read() {
-    final data = storage.read('tasks');
-    if (data != null) {
-      return _mapToEntity(data);
-    } else if (data == null) {
+  Future<List<TaskEntity>> read() async {
+    final taskList = <TaskEntity>[];
+    final data = await storage.read('tasks');
+    if (data != '{}') {
+      final json = jsonDecode(data);
+      json.forEach((key, value) {
+        final task = TaskModel.fromJson(value).toEntity();
+        print(task);
+        taskList.add(task);
+        print(taskList);
+      });
+      return taskList;
+    } else if (data == '{}') {
       return [];
     } else {
       throw CacheException();
@@ -33,35 +42,32 @@ class LocalTaskDatasource implements ITaskDatasource {
 
   @override
   Future<String> update(TaskEntity entity) async {
-    final jsonCache = jsonDecode(storage.read('tasks')!);
-    final response = await storage.save(
+    final storageData = await storage.read('tasks');
+    final jsonCache = jsonDecode(storageData);
+    await storage.save(
       key: 'tasks',
       value: jsonEncode(
           jsonCache..[entity.id] = TaskModel.fromEntity(entity).toJson()),
     );
-    if (response) {
-      return entity.id;
-    } else {
-      throw CacheException();
-    }
+    return entity.id;
   }
 
   @override
-  Future<bool> delete(TaskEntity entity) async {
-    final Map jsonCache = jsonDecode(storage.read('tasks')!);
+  Future<void> delete(TaskEntity entity) async {
+    final storageData = await storage.read('tasks');
+    final Map jsonCache = jsonDecode(storageData);
     jsonCache.remove(entity.id);
-    final result = await storage.save(
+    await storage.save(
       key: 'tasks',
       value: jsonEncode(jsonCache),
     );
-    return result ? result : throw CacheException();
   }
 
-  void _init() {
-    final data = storage.read('tasks');
+  void _init() async {
+    final String? data = await storage.read('tasks');
     if (data == null) storage.save(key: 'tasks', value: '{}');
   }
 
   List<TaskEntity> _mapToEntity(dynamic list) =>
-      list.map((entity) => TaskModel.fromEntity(entity).toJson()).toList();
+      list.value((entity) => TaskModel.fromEntity(entity).toJson()).toList();
 }
