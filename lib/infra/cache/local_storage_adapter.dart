@@ -17,7 +17,9 @@ class LocalStorageAdapter implements CacheStorage {
   }
 
   @override
-  Future<String?> read(String key) async {
-    return await localStorage.getItem(key);
+  Future<String> read(String key) async {
+    final result = await localStorage.getItem(key);
+    if (result == null) return '{}';
+    return result;
   }
 }

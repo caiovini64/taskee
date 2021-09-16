@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:new_taskee/domain/helpers/errors/domain_error.dart';
+import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 import 'package:new_taskee/domain/repositories/repositories.dart';
 import 'package:new_taskee/ui/pages/task/task_presenter.dart';
 import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
@@ -28,6 +29,7 @@ class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
   @override
   Future<void> getTasks() async {
     List<TaskViewModel> _taskListViewModel;
+    final tasks = await repository.create(kTaskParameters);
     emit(Loading());
     final result = await repository.read();
     result.fold(
@@ -40,7 +42,7 @@ class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
                 content: task.content,
                 state: task.state))
             .toList(),
-        emit(Done(kTaskListViewModel)),
+        emit(Done(_taskListViewModel)),
       },
     );
   }
@@ -80,3 +82,5 @@ final kTaskViewModel3 = TaskViewModel(
 );
 
 final kTaskListViewModel = [kTaskViewModel1, kTaskViewModel2, kTaskViewModel3];
+final TaskParameters kTaskParameters =
+    TaskParameters(title: 'caio', content: 'lindo', state: 'state');
