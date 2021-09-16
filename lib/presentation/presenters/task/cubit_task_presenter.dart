@@ -29,7 +29,6 @@ class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
   @override
   Future<void> getTasks() async {
     List<TaskViewModel> _taskListViewModel;
-    final tasks = await repository.create(kTaskParameters);
     emit(Loading());
     final result = await repository.read();
     result.fold(
@@ -80,7 +79,3 @@ final kTaskViewModel3 = TaskViewModel(
   content: 'content',
   state: 'done',
 );
-
-final kTaskListViewModel = [kTaskViewModel1, kTaskViewModel2, kTaskViewModel3];
-final TaskParameters kTaskParameters =
-    TaskParameters(title: 'caio', content: 'lindo', state: 'state');
