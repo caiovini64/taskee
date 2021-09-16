@@ -1,7 +1,7 @@
 import 'package:new_taskee/data/models/models.dart';
 import 'package:new_taskee/domain/entities/entities.dart';
 import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
-import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
+import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
 
 final kTaskjson =
     '{"state":"state","content":"content","title":"title","id":"id"}';
@@ -42,14 +42,14 @@ final kListTaskEntity = [
   kTaskEntity2,
 ];
 
-final kTaskViewModel1 = TaskViewModel(
+final kTaskViewModel1 = HomeViewModel(
   id: 'id',
   title: 'title',
   content: 'content',
   state: 'todo',
 );
 
-final kTaskViewModel2 = TaskViewModel(
+final kTaskViewModel2 = HomeViewModel(
   id: 'id',
   title: 'title',
   content: 'content',
