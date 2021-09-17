@@ -6,8 +6,8 @@ mixin TaskManager {
     required List<HomeViewModel> taskList,
     required TaskState taskState,
   }) {
-    return taskList
-        .where((element) => element.state.contains(taskState.description))
-        .toList();
+    return taskList.where((element) {
+      return element.state.contains(taskState.description);
+    }).toList();
   }
 }
