@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
+import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
 
 class TaskCard extends StatelessWidget {
-  final TaskViewModel task;
+  final HomeViewModel task;
   final Color cardColor;
   final Widget icon;
   final Widget iconBack;

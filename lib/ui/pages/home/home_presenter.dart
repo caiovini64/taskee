@@ -1,4 +1,4 @@
-abstract class TaskPresenter {
+abstract class HomePresenter {
   Future<void> getTasks();
   Future<void> addTask();
   Future<void> updateTaskState();

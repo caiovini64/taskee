@@ -1,8 +1,8 @@
 import 'package:new_taskee/domain/entities/entities.dart';
-import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
+import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
 
 extension TaskEntityExtensions on TaskEntity {
-  TaskViewModel toViewModel() => TaskViewModel(
+  HomeViewModel toViewModel() => HomeViewModel(
         id: id,
         content: content,
         title: title,

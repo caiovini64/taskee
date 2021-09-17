@@ -1,16 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:new_taskee/domain/helpers/errors/domain_error.dart';
-import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 import 'package:new_taskee/domain/repositories/repositories.dart';
-import 'package:new_taskee/ui/pages/task/task_presenter.dart';
-import 'package:new_taskee/ui/pages/task/task_viewmodel.dart';
+import 'package:new_taskee/ui/pages/home/home_presenter.dart';
+import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
 
-part 'cubit_task_state.dart';
+part 'cubit_state.dart';
 
-class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
+class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {
   final ITaskRepository repository;
-  CubitTaskPresenter({required this.repository}) : super(Initial()) {
+  CubitHomePresenter({required this.repository}) : super(Initial()) {
     getTasks();
   }
 
@@ -28,14 +27,14 @@ class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
 
   @override
   Future<void> getTasks() async {
-    List<TaskViewModel> _taskListViewModel;
+    List<HomeViewModel> _taskListViewModel;
     emit(Loading());
     final result = await repository.read();
     result.fold(
       (failure) => emit(Error(failure.message)),
       (data) => {
         _taskListViewModel = data
-            .map((task) => TaskViewModel(
+            .map((task) => HomeViewModel(
                 id: task.id,
                 title: task.title,
                 content: task.content,
@@ -59,21 +58,21 @@ class CubitTaskPresenter extends Cubit<TaskState> implements TaskPresenter {
   }
 }
 
-final kTaskViewModel1 = TaskViewModel(
+final kTaskViewModel1 = HomeViewModel(
   id: 'id',
   title: 'todo',
   content: 'content',
   state: 'todo',
 );
 
-final kTaskViewModel2 = TaskViewModel(
+final kTaskViewModel2 = HomeViewModel(
   id: 'id',
   title: 'in progress',
   content: 'content',
   state: 'in progress',
 );
 
-final kTaskViewModel3 = TaskViewModel(
+final kTaskViewModel3 = HomeViewModel(
   id: 'id',
   title: 'done',
   content: 'content',

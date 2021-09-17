@@ -1,11 +1,9 @@
 import 'dart:convert';
-
-import 'package:dartz/dartz_unsafe.dart';
 import 'package:new_taskee/data/cache/cache_storage.dart';
 import 'package:new_taskee/data/helpers/exceptions/cache_exception.dart';
 import 'package:new_taskee/data/models/models.dart';
 import 'package:new_taskee/domain/datasources/datasources.dart';
-import 'package:new_taskee/domain/entities/task_entity.dart';
+import 'package:new_taskee/domain/entities/entities.dart';
 import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 
 class LocalTaskDatasource implements ITaskDatasource {
