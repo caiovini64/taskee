@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:new_taskee/domain/helpers/errors/domain_error.dart';
-import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 import 'package:new_taskee/domain/repositories/repositories.dart';
 import 'package:new_taskee/ui/pages/home/home_presenter.dart';
 import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
