@@ -40,7 +40,7 @@ class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {
                 content: task.content,
                 state: task.state))
             .toList(),
-        emit(Done(_taskListViewModel)),
+        emit(Done(kTaskViewModelList)),
       },
     );
   }
@@ -62,7 +62,7 @@ final kTaskViewModel1 = HomeViewModel(
   id: 'id',
   title: 'todo',
   content: 'content',
-  state: 'todo',
+  state: 'to do',
 );
 
 final kTaskViewModel2 = HomeViewModel(
@@ -78,3 +78,16 @@ final kTaskViewModel3 = HomeViewModel(
   content: 'content',
   state: 'done',
 );
+final kTaskViewModel4 = HomeViewModel(
+  id: 'id',
+  title: 'done2',
+  content: 'content',
+  state: 'done',
+);
+
+final kTaskViewModelList = [
+  kTaskViewModel1,
+  kTaskViewModel2,
+  kTaskViewModel3,
+  kTaskViewModel4
+];
