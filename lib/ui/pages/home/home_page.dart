@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_taskee/presentation/presenters/home/cubit_home_presenter.dart';
+import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 import 'package:new_taskee/ui/pages/home/components/components.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,9 +28,9 @@ class _HomePageState extends State<HomePage> {
       child: PageView(
         controller: pageController,
         children: [
-          TaskListComponent(),
-          TaskListComponent(),
-          TaskListComponent(),
+          TaskListComponent(taskState: TaskState.toDo),
+          TaskListComponent(taskState: TaskState.inProgress),
+          TaskListComponent(taskState: TaskState.done),
         ],
       ),
     );
