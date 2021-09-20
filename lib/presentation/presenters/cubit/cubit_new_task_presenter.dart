@@ -15,9 +15,6 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
   TextEditingController get contentController => TextEditingController();
 
   @override
-  GlobalKey<FormState> get formKey => GlobalKey<FormState>();
-
-  @override
   TextEditingController get titleController => TextEditingController();
 
   @override

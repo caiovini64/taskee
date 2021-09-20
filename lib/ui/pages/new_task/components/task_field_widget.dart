@@ -4,7 +4,6 @@ class TaskFieldWidget extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
   final String semanticsLabel;
-  final String? Function(String?) validator;
   final Widget? suffixIcon;
   final double height;
   final int maxLines;
@@ -14,7 +13,6 @@ class TaskFieldWidget extends StatelessWidget {
     required this.labelText,
     required this.controller,
     required this.semanticsLabel,
-    required this.validator,
     this.height = 60,
     this.suffixIcon,
     this.maxLines = 1,
@@ -34,7 +32,6 @@ class TaskFieldWidget extends StatelessWidget {
         child: TextFormField(
           keyboardType: TextInputType.text,
           controller: controller,
-          validator: validator,
           maxLines: maxLines,
           style: Theme.of(context).textTheme.bodyText1,
           decoration: InputDecoration(
