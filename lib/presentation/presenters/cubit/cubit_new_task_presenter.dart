@@ -18,4 +18,7 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
   void validateTitle(String title) {
     if (title.isEmpty) emit(ValidationError());
   }
+
+  @override
+  void validateContent(String content) {}
 }

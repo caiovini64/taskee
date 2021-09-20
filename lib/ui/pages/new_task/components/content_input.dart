@@ -1,10 +1,13 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:new_taskee/presentation/presenters/cubit/cubit_new_task_presenter.dart';
 
 class ContentInput extends StatelessWidget {
   const ContentInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final presenter = context.read<CubitNewTaskPresenter>();
     return Semantics(
       label: 'Content Input',
       child: Container(
@@ -15,9 +18,9 @@ class ContentInput extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
+          onChanged: presenter.validateContent,
           keyboardType: TextInputType.text,
           maxLines: 10,
-          onChanged: (value) {},
           style: Theme.of(context).textTheme.bodyText1,
           decoration: InputDecoration(
             hintText: 'Content',
