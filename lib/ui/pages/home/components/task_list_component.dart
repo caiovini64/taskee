@@ -13,6 +13,7 @@ class TaskListComponent extends StatelessWidget with TaskManager {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final presenter = context.read<CubitHomePresenter>();
     return Scaffold(
       body: BlocBuilder<CubitHomePresenter, HomeState>(
         builder: (context, state) {
@@ -30,7 +31,7 @@ class TaskListComponent extends StatelessWidget with TaskManager {
                     : LoadingWidget(),
               ),
               AddButtonWidget(
-                onTap: () {},
+                onTap: () => presenter.goToAddTaskPage(context, taskState),
                 index: taskState.index,
               ),
             ],

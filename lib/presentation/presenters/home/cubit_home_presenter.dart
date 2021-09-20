@@ -1,7 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:new_taskee/domain/helpers/errors/domain_error.dart';
 import 'package:new_taskee/domain/repositories/repositories.dart';
+import 'package:new_taskee/ui/components/slide_animation.dart';
+import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
+import 'package:new_taskee/ui/pages/add_task/add_task_page.dart';
 import 'package:new_taskee/ui/pages/home/home_presenter.dart';
 import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
 
@@ -55,6 +59,23 @@ class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {
   Future<void> updateTaskState() {
     // TODO: implement updateTaskState
     throw UnimplementedError();
+  }
+
+  @override
+  void goToAddTaskPage(BuildContext context, TaskState taskState) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 400),
+        transitionsBuilder: (_, animation, __, child) {
+          return SlideTransition(
+            position: slideAnimation(animation),
+            child: child,
+          );
+        },
+        pageBuilder: (_, animation, __) => AddTaskPage(),
+      ),
+    );
   }
 }
 
