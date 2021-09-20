@@ -1,4 +1,4 @@
 abstract class NewTaskPresenter {
   Future<void> addTask();
-  String? validateTitle(String title);
+  void validateTitle(String title);
 }

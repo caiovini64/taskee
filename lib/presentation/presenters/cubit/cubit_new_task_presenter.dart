@@ -6,7 +6,7 @@ part 'cubit_new_task_state.dart';
 
 class CubitNewTaskPresenter extends Cubit<NewTaskState>
     implements NewTaskPresenter {
-  CubitNewTaskPresenter() : super(NewTaskInitial());
+  CubitNewTaskPresenter() : super(Initial());
 
   @override
   Future<void> addTask() {
@@ -15,11 +15,7 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
   }
 
   @override
-  String? validateTitle(String title) {
-    if (title.isEmpty) {
-      return 'Please dont ask again';
-    } else {
-      return null;
-    }
+  void validateTitle(String title) {
+    if (title.isEmpty) emit(ValidationError());
   }
 }
