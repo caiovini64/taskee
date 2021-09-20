@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:new_taskee/ui/components/app_theme.dart';
+import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
 
 class TaskCard extends StatelessWidget {
   final HomeViewModel task;
-  final Color cardColor;
-  final Widget icon;
-  final Widget iconBack;
 
   const TaskCard({
     Key? key,
     required this.task,
-    required this.cardColor,
-    required this.icon,
-    required this.iconBack,
   }) : super(key: key);
 
   @override
@@ -21,14 +17,23 @@ class TaskCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Card(
         elevation: 10,
-        color: cardColor,
+        color: greenCardColor,
         child: Container(
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(left: 10, right: 5, bottom: 30, top: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              iconBack,
+              Visibility(
+                visible: task.state != TaskState.toDo.description,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+              ),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -53,7 +58,23 @@ class TaskCard extends StatelessWidget {
                   ],
                 ),
               ),
-              icon,
+              Visibility(
+                visible: task.state != TaskState.done.description,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+                replacement: IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+              ),
             ],
           ),
         ),

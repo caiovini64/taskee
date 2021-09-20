@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 
 class BackgroundContainerWidget extends StatelessWidget {
   final Widget child;
-  const BackgroundContainerWidget({Key? key, required this.child})
+  final TaskState taskState;
+  const BackgroundContainerWidget(
+      {Key? key, required this.child, required this.taskState})
       : super(key: key);
 
   @override
@@ -22,8 +25,13 @@ class BackgroundContainerWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Theme.of(context).backgroundColor,
-                      borderRadius:
-                          const BorderRadius.only(topLeft: Radius.circular(60)),
+                      borderRadius: taskState == TaskState.toDo
+                          ? const BorderRadius.only(
+                              topLeft: Radius.circular(60))
+                          : taskState == TaskState.done
+                              ? const BorderRadius.only(
+                                  topRight: Radius.circular(60))
+                              : BorderRadius.circular(0),
                     ),
                     child: Column(
                       children: [
@@ -31,7 +39,7 @@ class BackgroundContainerWidget extends StatelessWidget {
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            'Todo',
+                            taskState.description,
                             style: Theme.of(context).textTheme.headline1,
                           ),
                         ),
