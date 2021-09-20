@@ -9,7 +9,7 @@ import 'package:new_taskee/ui/pages/home/home_presenter.dart';
 import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
 import 'package:new_taskee/ui/pages/new_task/new_task_page.dart';
 
-part 'cubit_state.dart';
+part 'cubit_home_state.dart';
 
 class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {
   final ITaskRepository repository;
