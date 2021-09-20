@@ -50,7 +50,7 @@ class AppTheme {
       primaryColor: primaryColor,
       textTheme: TextTheme(
         headline1: TextStyle(
-          color: backgroundColor,
+          color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 42,
         ),
