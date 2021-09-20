@@ -1,42 +1,26 @@
 import 'package:flutter/material.dart';
 
-class TaskFieldWidget extends StatelessWidget {
-  final String labelText;
-  final TextEditingController controller;
-  final String semanticsLabel;
-  final Widget? suffixIcon;
-  final double height;
-  final int maxLines;
-
-  const TaskFieldWidget({
-    Key? key,
-    required this.labelText,
-    required this.controller,
-    required this.semanticsLabel,
-    this.height = 60,
-    this.suffixIcon,
-    this.maxLines = 1,
-  }) : super(key: key);
+class ContentInput extends StatelessWidget {
+  const ContentInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: semanticsLabel,
+      label: 'Content Input',
       child: Container(
         padding: EdgeInsets.only(left: 10),
-        height: height,
+        height: 150,
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.2),
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
           keyboardType: TextInputType.text,
-          controller: controller,
-          maxLines: maxLines,
+          maxLines: 10,
+          onChanged: (value) {},
           style: Theme.of(context).textTheme.bodyText1,
           decoration: InputDecoration(
-            suffixIcon: suffixIcon,
-            hintText: labelText,
+            hintText: 'Content',
             hintStyle: Theme.of(context).textTheme.bodyText1,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
