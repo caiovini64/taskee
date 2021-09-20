@@ -18,18 +18,6 @@ class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {
   }
 
   @override
-  Future<void> addTask() {
-    // TODO: implement addTask
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> deleteTask() {
-    // TODO: implement deleteTask
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> getTasks() async {
     List<HomeViewModel> _taskListViewModel;
     emit(Loading());
@@ -47,12 +35,6 @@ class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {
         emit(Done(kTaskViewModelList)),
       },
     );
-  }
-
-  @override
-  Future<void> updateTask() {
-    // TODO: implement updateTask
-    throw UnimplementedError();
   }
 
   @override
