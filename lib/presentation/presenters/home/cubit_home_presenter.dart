@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:new_taskee/domain/helpers/errors/domain_error.dart';
 import 'package:new_taskee/domain/repositories/repositories.dart';
+import 'package:new_taskee/main/factories/pages/home/new_task_page_factory.dart';
 import 'package:new_taskee/ui/components/slide_animation.dart';
 import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 import 'package:new_taskee/ui/pages/home/home_presenter.dart';
@@ -55,7 +56,7 @@ class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {
             child: child,
           );
         },
-        pageBuilder: (_, animation, __) => NewTaskPage(),
+        pageBuilder: (_, animation, __) => makeNewTaskPage(),
       ),
     );
   }

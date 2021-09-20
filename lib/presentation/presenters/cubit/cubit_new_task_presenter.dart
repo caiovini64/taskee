@@ -7,8 +7,9 @@ import 'package:new_taskee/ui/pages/new_task/new_task_presenter.dart';
 
 part 'cubit_new_task_state.dart';
 
-class NewTaskCubit extends Cubit<NewTaskState> implements NewTaskPresenter {
-  NewTaskCubit() : super(NewTaskInitial());
+class CubitNewTaskPresenter extends Cubit<NewTaskState>
+    implements NewTaskPresenter {
+  CubitNewTaskPresenter() : super(NewTaskInitial());
 
   @override
   TextEditingController get contentController => TextEditingController();
