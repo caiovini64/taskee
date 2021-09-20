@@ -16,4 +16,8 @@ void main() {
     final result = validation.validate(title);
     expect(result, true);
   });
+  test('should return false when title is empty', () {
+    final result = validation.validate('');
+    expect(result, false);
+  });
 }
