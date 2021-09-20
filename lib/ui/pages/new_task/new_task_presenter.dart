@@ -1,1 +1,3 @@
-abstract class AddTaskPresenter {}
+abstract class AddTaskPresenter {
+  Future<void> addTask();
+}
