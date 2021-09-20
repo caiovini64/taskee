@@ -57,7 +57,7 @@ class AppTheme {
         headline2: TextStyle(
           color: backgroundColor,
           fontWeight: FontWeight.bold,
-          fontSize: 32,
+          fontSize: 42,
         ),
         headline3: TextStyle(
           color: backgroundColor,

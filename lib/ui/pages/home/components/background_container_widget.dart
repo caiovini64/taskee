@@ -40,7 +40,7 @@ class BackgroundContainerWidget extends StatelessWidget {
                           alignment: Alignment.topLeft,
                           child: Text(
                             taskState.description,
-                            style: Theme.of(context).textTheme.headline1,
+                            style: Theme.of(context).textTheme.headline2,
                           ),
                         ),
                         const SizedBox(height: 2),
