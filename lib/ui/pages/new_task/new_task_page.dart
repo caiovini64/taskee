@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_taskee/ui/pages/add_task/components/task_field_widget.dart';
+import 'package:new_taskee/ui/pages/new_task/components/task_field_widget.dart';
 
-class AddTaskPage extends StatelessWidget {
-  AddTaskPage({Key? key}) : super(key: key);
+class NewTaskPage extends StatelessWidget {
+  NewTaskPage({Key? key}) : super(key: key);
   final titleController = TextEditingController();
   final contentController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
