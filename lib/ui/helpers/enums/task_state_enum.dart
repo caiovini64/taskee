@@ -15,4 +15,15 @@ extension TaskStateExtension on TaskState {
         return 'done';
     }
   }
+
+  int get index {
+    switch (this) {
+      case TaskState.toDo:
+        return 1;
+      case TaskState.inProgress:
+        return 2;
+      case TaskState.done:
+        return 3;
+    }
+  }
 }
