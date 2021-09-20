@@ -8,6 +8,12 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
     implements NewTaskPresenter {
   CubitNewTaskPresenter() : super(Initial());
 
+  late String _title;
+  late String _content;
+
+  String get content => _content;
+  String get title => _title;
+
   @override
   Future<void> addTask() {
     // TODO: implement addTask
@@ -16,9 +22,12 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
 
   @override
   void validateTitle(String title) {
+    _title = title;
     if (title.isEmpty) emit(ValidationError());
   }
 
   @override
-  void validateContent(String content) {}
+  void validateContent(String content) {
+    _content = content;
+  }
 }
