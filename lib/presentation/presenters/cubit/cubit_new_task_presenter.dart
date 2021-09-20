@@ -1,12 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:new_taskee/ui/pages/new_task/new_task_presenter.dart';
+import 'package:new_taskee/validations/protocols/field_validation.dart';
 
 part 'cubit_new_task_state.dart';
 
 class CubitNewTaskPresenter extends Cubit<NewTaskState>
     implements NewTaskPresenter {
-  CubitNewTaskPresenter() : super(Initial());
+  final FieldValidation titleValidation;
+  CubitNewTaskPresenter({
+    required this.titleValidation,
+  }) : super(Initial());
 
   late String _title;
   late String _content;
@@ -23,7 +27,8 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
   @override
   void validateTitle(String title) {
     _title = title;
-    if (title.isEmpty) emit(ValidationError());
+    final validation = titleValidation(title);
+    if (!validation) emit(ValidationError());
   }
 
   @override

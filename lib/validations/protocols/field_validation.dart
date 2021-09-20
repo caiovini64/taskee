@@ -1,3 +1,3 @@
 abstract class FieldValidation {
-  bool validate(String value);
+  bool call(String value);
 }

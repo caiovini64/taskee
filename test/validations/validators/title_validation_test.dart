@@ -13,11 +13,11 @@ void main() {
   });
 
   test('should return true when title is not empty', () {
-    final result = validation.validate(title);
+    final result = validation(title);
     expect(result, true);
   });
   test('should return false when title is empty', () {
-    final result = validation.validate('');
+    final result = validation('');
     expect(result, false);
   });
 }
