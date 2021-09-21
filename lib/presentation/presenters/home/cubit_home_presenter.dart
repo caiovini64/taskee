@@ -54,7 +54,7 @@ class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {
             child: child,
           );
         },
-        pageBuilder: (_, animation, __) => makeNewTaskPage(),
+        pageBuilder: (_, animation, __) => makeNewTaskPage(taskState),
       ),
     );
   }

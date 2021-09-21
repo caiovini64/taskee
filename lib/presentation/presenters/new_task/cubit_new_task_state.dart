@@ -10,3 +10,7 @@ abstract class NewTaskState extends Equatable {
 class Initial extends NewTaskState {}
 
 class ValidationError extends NewTaskState {}
+
+class Loading extends NewTaskState {}
+
+class Done extends NewTaskState {}
