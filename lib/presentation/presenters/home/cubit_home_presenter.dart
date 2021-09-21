@@ -8,8 +8,6 @@ import 'package:new_taskee/ui/components/slide_animation.dart';
 import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 import 'package:new_taskee/ui/pages/home/home_presenter.dart';
 import 'package:new_taskee/ui/pages/home/home_viewmodel.dart';
-import 'package:new_taskee/ui/pages/new_task/new_task_page.dart';
-
 part 'cubit_home_state.dart';
 
 class CubitHomePresenter extends Cubit<HomeState> implements HomePresenter {

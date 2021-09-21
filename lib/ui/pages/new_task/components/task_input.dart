@@ -42,6 +42,5 @@ class TaskInput extends StatelessWidget {
         );
       },
     );
-    ;
   }
 }
