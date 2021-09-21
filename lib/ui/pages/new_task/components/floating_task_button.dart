@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_taskee/presentation/presenters/cubit/cubit_new_task_presenter.dart';
+import 'package:new_taskee/presentation/presenters/new_task/cubit_new_task_presenter.dart';
 import 'package:new_taskee/ui/components/app_theme.dart';
 import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 import 'package:new_taskee/ui/pages/new_task/components/create_task_button_widget.dart';

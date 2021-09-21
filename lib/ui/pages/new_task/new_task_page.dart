@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_taskee/presentation/presenters/cubit/cubit_new_task_presenter.dart';
-import 'package:new_taskee/ui/components/app_theme.dart';
+import 'package:new_taskee/presentation/presenters/new_task/cubit_new_task_presenter.dart';
 import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 import 'package:new_taskee/ui/pages/new_task/components/content_input.dart';
-import 'package:new_taskee/ui/pages/new_task/components/create_task_button_widget.dart';
 import 'package:new_taskee/ui/pages/new_task/components/floating_task_button.dart';
 import 'package:new_taskee/ui/pages/new_task/components/task_input.dart';
 import 'package:new_taskee/ui/pages/new_task/components/page_title.dart';
