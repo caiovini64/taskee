@@ -6,7 +6,7 @@ import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 class TaskModel {
   final String id;
   final String title;
-  final String content;
+  final String? content;
   final String state;
 
   TaskModel({

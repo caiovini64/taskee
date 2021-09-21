@@ -50,7 +50,7 @@ class TaskCard extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      task.content,
+                      task.content ?? '',
                       style: Theme.of(context).textTheme.bodyText2,
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,

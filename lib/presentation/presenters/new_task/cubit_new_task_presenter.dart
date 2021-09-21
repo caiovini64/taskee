@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:new_taskee/domain/entities/entities.dart';
 import 'package:new_taskee/domain/helpers/parameters/task_parameters.dart';
 import 'package:new_taskee/domain/repositories/repositories.dart';
-import 'package:new_taskee/presentation/presenters/home/cubit_home_presenter.dart';
 import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 import 'package:new_taskee/ui/pages/new_task/new_task_presenter.dart';
 import 'package:new_taskee/validations/protocols/field_validation.dart';

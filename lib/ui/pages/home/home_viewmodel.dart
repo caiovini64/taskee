@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class HomeViewModel extends Equatable {
   final String id;
   final String title;
-  final String content;
+  final String? content;
   final String state;
 
   HomeViewModel({
