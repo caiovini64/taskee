@@ -28,7 +28,6 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
       {required TaskState state,
       required String title,
       required String content}) {
-    emit(Loading());
     final validation = validateTitle(title);
     if (validation) {
       final parameters = TaskParameters(
@@ -43,7 +42,6 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
 
   @override
   bool validateTitle(String title) {
-    emit(Initial());
     _title = title;
     final validation = titleValidation(title);
     if (!validation) emit(ValidationError());

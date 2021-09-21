@@ -5,6 +5,7 @@ import 'package:new_taskee/ui/components/app_theme.dart';
 import 'package:new_taskee/ui/helpers/enums/task_state_enum.dart';
 import 'package:new_taskee/ui/pages/new_task/components/content_input.dart';
 import 'package:new_taskee/ui/pages/new_task/components/create_task_button_widget.dart';
+import 'package:new_taskee/ui/pages/new_task/components/floating_task_button.dart';
 import 'package:new_taskee/ui/pages/new_task/components/task_input.dart';
 import 'package:new_taskee/ui/pages/new_task/components/page_title.dart';
 
@@ -51,23 +52,10 @@ class _NewTaskPageState extends State<NewTaskPage> {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: CreateTaskButtonWidget.principal(
-            onPressed: () {
-              widget.presenter.addTask(
-                  title: titleController.text,
-                  content: contentController.text,
-                  state: widget.taskState);
-            },
-            child: Text(
-              'Create new task',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4!
-                  .copyWith(color: primaryColor),
-            ),
-          ),
+        floatingActionButton: FloatingTaskButton(
+          contentController: contentController,
+          titleController: titleController,
+          taskState: widget.taskState,
         ),
       ),
     );
