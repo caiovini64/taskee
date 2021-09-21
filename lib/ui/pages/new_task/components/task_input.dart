@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:new_taskee/presentation/presenters/new_task/cubit_new_task_presenter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_taskee/presentation/presenters/cubit/cubit_new_task_presenter.dart';
 
 class TaskInput extends StatelessWidget {
-  const TaskInput({Key? key}) : super(key: key);
+  final TextEditingController controller;
+  const TaskInput({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class TaskInput extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: TextFormField(
+              controller: controller,
               keyboardType: TextInputType.text,
               maxLines: 5,
               onChanged: presenter.validateTitle,

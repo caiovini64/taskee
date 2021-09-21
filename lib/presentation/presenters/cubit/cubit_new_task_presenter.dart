@@ -18,28 +18,36 @@ class CubitNewTaskPresenter extends Cubit<NewTaskState>
   }) : super(Initial());
 
   late String _title;
-  late String _content;
+  String? _content;
 
-  String get content => _content;
+  String? get content => _content;
   String get title => _title;
 
   @override
-  void addTask(TaskState state) {
+  void addTask(
+      {required TaskState state,
+      required String title,
+      required String content}) {
     emit(Loading());
-    final parameters = TaskParameters(
-      content: _content,
-      title: _title,
-      state: state.description,
-    );
-    repository.create(parameters);
-    emit(Done());
+    final validation = validateTitle(title);
+    if (validation) {
+      final parameters = TaskParameters(
+        content: content,
+        title: title,
+        state: state.description,
+      );
+      repository.create(parameters);
+      emit(Done());
+    }
   }
 
   @override
-  void validateTitle(String title) {
+  bool validateTitle(String title) {
+    emit(Initial());
     _title = title;
     final validation = titleValidation(title);
     if (!validation) emit(ValidationError());
+    return validation;
   }
 
   @override
