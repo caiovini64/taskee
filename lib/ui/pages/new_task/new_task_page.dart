@@ -4,7 +4,7 @@ import 'package:new_taskee/presentation/presenters/cubit/cubit_new_task_presente
 import 'package:new_taskee/ui/pages/new_task/components/content_input.dart';
 import 'package:new_taskee/ui/pages/new_task/components/create_task_button_widget.dart';
 import 'package:new_taskee/ui/pages/new_task/components/task_input.dart';
-import 'package:new_taskee/ui/pages/new_task/components/title_page.dart';
+import 'package:new_taskee/ui/pages/new_task/components/page_title.dart';
 
 class NewTaskPage extends StatelessWidget {
   final CubitNewTaskPresenter presenter;
@@ -28,7 +28,7 @@ class NewTaskPage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              TitlePage(),
+              PageTitle(),
               SizedBox(height: 40),
               TaskInput(),
               SizedBox(height: 40),
