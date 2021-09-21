@@ -4,10 +4,10 @@ import 'package:new_taskee/presentation/presenters/cubit/cubit_new_task_presente
 import 'package:new_taskee/ui/pages/new_task/components/content_input.dart';
 import 'package:new_taskee/ui/pages/new_task/components/create_task_button_widget.dart';
 import 'package:new_taskee/ui/pages/new_task/components/task_input.dart';
+import 'package:new_taskee/ui/pages/new_task/components/title_page.dart';
 
 class NewTaskPage extends StatelessWidget {
-  CubitNewTaskPresenter presenter;
-
+  final CubitNewTaskPresenter presenter;
   NewTaskPage({Key? key, required this.presenter}) : super(key: key);
 
   @override
@@ -28,10 +28,7 @@ class NewTaskPage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text('aaaaa'),
-              ),
+              TitlePage(),
               SizedBox(height: 40),
               TaskInput(),
               SizedBox(height: 40),
