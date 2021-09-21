@@ -22,17 +22,17 @@ class AppTheme {
         headline3: TextStyle(
           color: backgroundColor,
           fontWeight: FontWeight.bold,
-          fontSize: widthScreen < 480 ? 18 : 30,
+          fontSize: widthScreen < 480 ? 18 : 24,
         ),
         headline4: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: widthScreen < 480 ? 16 : 28,
+          fontSize: widthScreen < 480 ? 16 : 24,
         ),
         bodyText1: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: widthScreen < 480 ? 14 : 26,
+          fontSize: widthScreen < 480 ? 14 : 22,
         ),
         bodyText2: TextStyle(
           color: Colors.white,
